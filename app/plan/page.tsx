@@ -153,11 +153,12 @@ export default function PlanPage() {
       const resolution = data?.resolution as {
         corrected?: string | null;
         kind?: "state" | "district" | "destination" | null;
+        confidence?: number | null;
         changed?: boolean;
       } | undefined;
 
       if (resolution?.corrected && resolution.kind) {
-        if (resolution.changed) {
+        if (resolution.changed && Number(resolution.confidence || 0) >= 0.9) {
           setForm((prev) => ({ ...prev, [key]: resolution.corrected as FormData[typeof key] }));
           setFieldHints((prev) => ({
             ...prev,

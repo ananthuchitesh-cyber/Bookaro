@@ -312,6 +312,10 @@ export function resolveIndianLocationName(input: string): LocationResolution {
     }
   }
 
+  if (best.name !== trimmed && bestScore < 0.9) {
+    return { input: trimmed, corrected: null, kind: null, confidence: 0, changed: false };
+  }
+
   return {
     input: trimmed,
     corrected: best.name,
