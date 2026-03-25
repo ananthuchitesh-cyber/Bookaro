@@ -49,6 +49,10 @@ const RAW_ALIAS_MAP: Record<string, string> = {
   nigiri: "The Nilgiris",
   nigiris: "The Nilgiris",
   nigori: "The Nilgiris",
+  thiruvallur: "Thiruvallur",
+  tiruvallur: "Thiruvallur",
+  thiruvarur: "Tiruvarur",
+  tiruvarur: "Tiruvarur",
   ooty: "Ooty",
   udhagamandalam: "Ooty",
   ootacamund: "Ooty",
@@ -64,6 +68,45 @@ function normalizeLocationKey(value: string): string {
       .replace(/\s+/g, " ")
       .trim()
   );
+}
+
+function buildVariantKeys(value: string): string[] {
+  const key = normalizeLocationKey(value);
+  const variants = new Set<string>([key]);
+  if (!key) return [];
+
+  if (key.startsWith("thiru")) variants.add(`t${key.slice(1)}`);
+  if (key.startsWith("tiru")) variants.add(`th${key.slice(1)}`);
+
+  if (key.includes("kanyakumari") || key.includes("kanniyakumari") || key.includes("kaniyakumari")) {
+    variants.add("kanyakumari");
+    variants.add("kanniyakumari");
+  }
+  if (key.includes("thoothukudi") || key.includes("tuticorin")) {
+    variants.add("thoothukudi");
+    variants.add("tuticorin");
+  }
+  if (key.includes("tirunelveli") || key.includes("nellai")) {
+    variants.add("tirunelveli");
+    variants.add("nellai");
+  }
+  if (key.includes("tiruchi") || key.includes("trichy") || key.includes("tiruchirappalli")) {
+    variants.add("tiruchi");
+    variants.add("trichy");
+    variants.add("tiruchirappalli");
+  }
+  if (key.includes("thanjavur") || key.includes("tanjavur") || key.includes("tanjore")) {
+    variants.add("thanjavur");
+    variants.add("tanjavur");
+    variants.add("tanjore");
+  }
+  if (key.includes("nilgiri") || key === "ooty") {
+    variants.add("thenilgiris");
+    variants.add("nilgiris");
+    variants.add("ooty");
+  }
+
+  return Array.from(variants).filter(Boolean);
 }
 
 function parseStateNamesFromCsv(): string[] {
@@ -93,16 +136,20 @@ function getLocationCandidates(): { candidates: LocationCandidate[]; byKey: Map<
   const byKey = new Map<string, LocationCandidate>();
   const add = (name: string, kind: LocationKind) => {
     const trimmed = String(name || "").trim();
-    const key = normalizeLocationKey(trimmed);
-    if (!trimmed || !key) return;
-    if (!byKey.has(key)) {
-      byKey.set(key, { name: trimmed, kind });
+    const variantKeys = buildVariantKeys(trimmed);
+    if (!trimmed || variantKeys.length === 0) return;
+    const canonical = { name: trimmed, kind };
+    for (const key of variantKeys) {
+      if (!byKey.has(key)) {
+        byKey.set(key, canonical);
+      }
     }
   };
   const addAlias = (alias: string, target: LocationCandidate) => {
-    const aliasKey = normalizeLocationKey(alias);
-    if (!aliasKey || byKey.has(aliasKey)) return;
-    byKey.set(aliasKey, target);
+    for (const aliasKey of buildVariantKeys(alias)) {
+      if (!aliasKey || byKey.has(aliasKey)) continue;
+      byKey.set(aliasKey, target);
+    }
   };
 
   for (const stateName of parseStateNamesFromCsv()) add(stateName, "state");
@@ -189,6 +236,25 @@ function scoreCandidate(inputKey: string, candidateKey: string, kind: LocationKi
   return similarity + kindBonus;
 }
 
+function isUnsafeNearMatch(inputKey: string, bestKey: string, secondKey: string, bestScore: number, secondScore: number): boolean {
+  const scoreGap = bestScore - secondScore;
+  if (scoreGap >= 0.03) return false;
+  if (bestKey === secondKey) return false;
+
+  const sharedPrefixLength = (() => {
+    let i = 0;
+    while (i < inputKey.length && i < bestKey.length && i < secondKey.length) {
+      if (inputKey[i] !== bestKey[i] || inputKey[i] !== secondKey[i]) break;
+      i += 1;
+    }
+    return i;
+  })();
+
+  const bestDistance = levenshtein(inputKey, bestKey);
+  const secondDistance = levenshtein(inputKey, secondKey);
+  return sharedPrefixLength >= 6 && bestDistance <= 3 && secondDistance <= 3;
+}
+
 export function resolveIndianLocationName(input: string): LocationResolution {
   const trimmed = String(input || "").trim();
   const inputKey = normalizeLocationKey(trimmed);
@@ -211,13 +277,21 @@ export function resolveIndianLocationName(input: string): LocationResolution {
 
   let best: LocationCandidate | null = null;
   let bestScore = 0;
+  let secondBest: LocationCandidate | null = null;
+  let secondBestScore = 0;
 
   for (const candidate of candidates) {
-    const candidateKey = normalizeLocationKey(candidate.name);
-    const score = scoreCandidate(inputKey, candidateKey, candidate.kind);
-    if (score > bestScore) {
-      best = candidate;
-      bestScore = score;
+    for (const candidateKey of buildVariantKeys(candidate.name)) {
+      const score = scoreCandidate(inputKey, candidateKey, candidate.kind);
+      if (score > bestScore) {
+        secondBest = best;
+        secondBestScore = bestScore;
+        best = candidate;
+        bestScore = score;
+      } else if (score > secondBestScore) {
+        secondBest = candidate;
+        secondBestScore = score;
+      }
     }
   }
 
@@ -228,6 +302,14 @@ export function resolveIndianLocationName(input: string): LocationResolution {
 
   if (!best || bestScore < minScore) {
     return { input: trimmed, corrected: null, kind: null, confidence: 0, changed: false };
+  }
+
+  if (secondBest) {
+    const bestKey = normalizeLocationKey(best.name);
+    const secondKey = normalizeLocationKey(secondBest.name);
+    if (isUnsafeNearMatch(inputKey, bestKey, secondKey, bestScore, secondBestScore)) {
+      return { input: trimmed, corrected: null, kind: null, confidence: 0, changed: false };
+    }
   }
 
   return {
