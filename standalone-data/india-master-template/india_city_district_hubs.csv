@@ -1,0 +1,7 @@
+state_code,state_name,hub_name,hub_type,district_or_city,airport_name,major_station,bus_connectivity,local_transport_types,tourism_priority,notes
+TN,Tamil Nadu,Chennai,metro,Chennai,Chennai International Airport,Chennai Central,excellent,metro|bus|cab|auto,high,Primary South India gateway
+TN,Tamil Nadu,Coimbatore,city,Coimbatore,Coimbatore International Airport,Coimbatore Junction,strong,bus|cab|auto,high,Useful for Ooty and western TN
+KA,Karnataka,Bengaluru,metro,Bengaluru,Kempegowda International Airport,KSR Bengaluru,excellent,metro|bus|cab|auto,high,Primary Karnataka hub
+KL,Kerala,Kochi,city,Ernakulam,Cochin International Airport,Ernakulam Junction,strong,bus|cab|metro|auto,high,Useful for central Kerala
+RJ,Rajasthan,Jaipur,city,Jaipur,Jaipur International Airport,Jaipur Junction,strong,bus|cab|auto,high,Main Rajasthan entry hub
+DL,Delhi,New Delhi,metro,New Delhi,Indira Gandhi International Airport,New Delhi Railway Station,excellent,metro|bus|cab|auto,high,National transit hub

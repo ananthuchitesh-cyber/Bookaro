@@ -6,16 +6,30 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:data": "python scripts/build_travel_data_json.py --source-dir d:\\TravelApp --out db/compiled/india-travel-data.json",
+    "db:init": "node scripts/init-databases.mjs all",
+    "db:init:travel": "node scripts/init-databases.mjs travel",
+    "db:init:user": "node scripts/init-databases.mjs user",
+    "db:build:zip": "python scripts/build_travel_data_from_zip.py --zip-file d:\\TravelApp.zip --out db/compiled/india-travel-data.json",
+    "db:seed:travel": "node scripts/seed-travel-db.mjs --reset",
+    "db:setup:travel": "npm run db:build:zip && npm run db:init:travel && npm run db:seed:travel",
+    "db:setup:all": "npm run db:init:user && npm run db:setup:travel"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "framer-motion": "^12.34.3",
+    "lucide-react": "^0.575.0",
     "next": "16.1.6",
+    "pg": "^8.19.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "recharts": "^3.7.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
+    "@types/pg": "^8.18.0",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

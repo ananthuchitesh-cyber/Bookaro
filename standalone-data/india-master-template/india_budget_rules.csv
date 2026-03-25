@@ -1,0 +1,9 @@
+state_code,state_name,budget_hotel_per_night_inr,comfort_hotel_per_night_inr,luxury_hotel_per_night_inr,food_budget_per_day_inr,local_transport_per_day_inr,sightseeing_buffer_per_day_inr,peak_season_multiplier,notes
+AP,Andhra Pradesh,1200,3200,7500,500,400,300,1.15,Adjust higher for Tirupati and Vizag peak dates
+DL,Delhi,1500,4000,9000,700,500,400,1.20,Higher city pricing than most states
+GA,Goa,1800,4500,11000,700,500,500,1.35,Use peak multiplier for December and New Year
+KA,Karnataka,1400,3500,8500,600,450,350,1.15,Increase for Bengaluru and Coorg premium seasons
+KL,Kerala,1600,3800,9500,650,450,400,1.20,Houseboats and Munnar can push higher
+RJ,Rajasthan,1300,3400,9000,550,450,400,1.20,Jaipur Jodhpur Udaipur may need city overrides
+TN,Tamil Nadu,1400,3300,8000,550,400,350,1.15,Ooty and Kodaikanal need seasonal overrides
+UP,Uttar Pradesh,1100,3000,7000,500,400,300,1.10,Varanasi and Ayodhya should have event-based overrides

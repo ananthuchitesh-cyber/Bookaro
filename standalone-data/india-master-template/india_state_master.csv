@@ -1,0 +1,37 @@
+state_code,state_name,region,capital,primary_airport,primary_rail_hub,best_season_start,best_season_end,avg_budget_level,notes
+AN,Andaman and Nicobar Islands,Islands,Port Blair,Veer Savarkar International Airport,Port Blair,October,April,medium,Union territory
+AP,Andhra Pradesh,South,Amaravati,Vijayawada Airport,Vijayawada Junction,October,March,medium,
+AR,Arunachal Pradesh,Northeast,Itanagar,Donyi Polo Airport,Naharlagun Railway Station,October,April,medium,
+AS,Assam,Northeast,Dispur,Lokpriya Gopinath Bordoloi International Airport,Guwahati Junction,October,April,budget,
+BR,Bihar,East,Patna,Jay Prakash Narayan Airport,Patna Junction,October,March,budget,
+CH,Chandigarh,North,Chandigarh,Chandigarh International Airport,Chandigarh Junction,October,March,medium,Union territory
+CG,Chhattisgarh,Central,Raipur,Swami Vivekananda Airport,Raipur Junction,October,March,budget,
+DN,Dadra and Nagar Haveli and Daman and Diu,West,Daman,Surat Airport,Vapi Railway Station,October,March,medium,Union territory
+DL,Delhi,North,New Delhi,Indira Gandhi International Airport,New Delhi Railway Station,October,March,medium,Union territory
+GA,Goa,West,Panaji,Manohar International Airport,Madgaon Junction,November,February,medium,
+GJ,Gujarat,West,Gandhinagar,Sardar Vallabhbhai Patel International Airport,Ahmedabad Junction,October,March,medium,
+HR,Haryana,North,Chandigarh,Indira Gandhi International Airport,Gurugram Railway Station,October,March,medium,
+HP,Himachal Pradesh,North,Shimla,Chandigarh International Airport,Kalka Railway Station,March,June,medium,
+JK,Jammu and Kashmir,North,Srinagar,Srinagar Airport,Jammu Tawi,April,October,medium,Union territory
+JH,Jharkhand,East,Ranchi,Birsa Munda Airport,Ranchi Junction,October,March,budget,
+KA,Karnataka,South,Bengaluru,Kempegowda International Airport,KSR Bengaluru,October,February,medium,
+KL,Kerala,South,Thiruvananthapuram,Cochin International Airport,Ernakulam Junction,September,March,medium,
+LA,Ladakh,North,Leh,Kushok Bakula Rimpochee Airport,No major rail hub,May,September,medium,Union territory
+LD,Lakshadweep,Islands,Kavaratti,Agatti Airport,No rail connectivity,October,March,medium,Union territory
+MH,Maharashtra,West,Mumbai,Chhatrapati Shivaji Maharaj International Airport,CSMT Mumbai,October,March,medium,
+ML,Meghalaya,Northeast,Shillong,Shillong Airport,Guwahati Junction,October,April,medium,
+MN,Manipur,Northeast,Imphal,Imphal International Airport,Dimapur Railway Station,October,April,medium,
+MP,Madhya Pradesh,Central,Bhopal,Raja Bhoj Airport,Bhopal Junction,October,March,budget,
+MZ,Mizoram,Northeast,Aizawl,Lengpui Airport,Silchar Railway Station,October,April,medium,
+NL,Nagaland,Northeast,Kohima,Dimapur Airport,Dimapur Railway Station,October,April,medium,
+OD,Odisha,East,Bhubaneswar,Biju Patnaik International Airport,Bhubaneswar Railway Station,October,February,budget,
+PB,Punjab,North,Chandigarh,Sri Guru Ram Dass Jee International Airport,Ludhiana Junction,October,March,medium,
+PY,Puducherry,South,Puducherry,Chennai International Airport,Villupuram Junction,October,March,medium,Union territory
+RJ,Rajasthan,West,Jaipur,Jaipur International Airport,Jaipur Junction,October,March,medium,
+SK,Sikkim,Northeast,Gangtok,Pakyong Airport,New Jalpaiguri,March,June,medium,
+TN,Tamil Nadu,South,Chennai,Chennai International Airport,Chennai Central,October,March,medium,
+TS,Telangana,South,Hyderabad,Rajiv Gandhi International Airport,Secunderabad Junction,October,February,medium,
+TR,Tripura,Northeast,Agartala,Maharaja Bir Bikram Airport,Agartala Railway Station,October,April,medium,
+UP,Uttar Pradesh,North,Lucknow,Chaudhary Charan Singh International Airport,Lucknow Junction,October,March,budget,
+UK,Uttarakhand,North,Dehradun,Jolly Grant Airport,Dehradun Railway Station,March,June,medium,
+WB,West Bengal,East,Kolkata,Netaji Subhas Chandra Bose International Airport,Howrah Junction,October,March,medium,

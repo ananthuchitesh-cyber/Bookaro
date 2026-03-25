@@ -1,0 +1,7 @@
+from_state_code,from_hub,to_state_code,to_hub,mode,distance_km,typical_duration,price_min_inr,price_max_inr,availability,booking_type,seasonality,notes
+TN,Chennai,KA,Bengaluru,bus,350,6-8 hrs,600,1800,daily,online_offline,all_year,Strong route with frequent departures
+TN,Chennai,KA,Bengaluru,train,360,5-7 hrs,250,1800,daily,online_offline,all_year,Useful budget option
+TN,Chennai,KA,Bengaluru,flight,290,1-1.5 hrs,2500,7000,daily,online,all_year,Use for time-saving plans
+DL,New Delhi,RJ,Jaipur,bus,280,5-6 hrs,400,1400,daily,online_offline,all_year,High-frequency corridor
+DL,New Delhi,RJ,Jaipur,train,300,4-6 hrs,200,1600,daily,online_offline,all_year,Good low-cost route
+KA,Bengaluru,KL,Kochi,bus,550,9-11 hrs,900,2200,daily,online_offline,all_year,Popular overnight route
